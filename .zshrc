@@ -76,6 +76,7 @@ plugins=(
 	zsh-syntax-highlighting
 	colored-man-pages
 	you-should-use
+	aliases
 )
 
 source $ZSH/oh-my-zsh.sh
