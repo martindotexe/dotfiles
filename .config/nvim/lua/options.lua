@@ -64,3 +64,21 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- Change tabs to spaces
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.autoindent = true
+vim.opt.smartindent = true
+
+vim.opt.conceallevel = 1
+
+vim.opt.wrap = false
+
+vim.filetype.add {
+  extension = {
+    tmpl = 'html',
+  },
+}
