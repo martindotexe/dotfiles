@@ -168,8 +168,62 @@ return {
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
+        gopls = {
+          settings = {
+            gopls = {
+              analyses = {
+                unusedparams = true,
+                shadow = true,
+                unusedvariable = true,
+                useany = true,
+              },
+              gofumpt = true,
+            },
+          },
+        },
+        golangci_lint_ls = {
+          filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+          init_options = {
+            command = {
+              'golangci-lint',
+              'run',
+              '--out-format',
+              'json',
+              '--issues-exit-code=1',
+            },
+          },
+        },
+        pylsp = {
+          cmd = { 'pylsp' },
+          filetypes = { 'python' },
+          settings = {
+            pylsp = {
+              plugins = {
+                -- formatter options
+                black = { enabled = true },
+                autopep8 = { enabled = false },
+                yapf = { enabled = false },
+                -- linter options
+                pylint = { enabled = true, executable = 'pylint' },
+                pyflakes = { enabled = false },
+                pycodestyle = { enabled = false },
+                -- type checker
+                pylsp_mypy = {
+                  enabled = true,
+                  strict = true,
+                },
+                -- auto-completion options
+                jedi_completion = { fuzzy = true },
+                -- import sorting
+                pyls_isort = { enabled = true },
+              },
+            },
+          },
+          flags = {
+            debounce_text_changes = 200,
+          },
+          capabilities = capabilities,
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --

@@ -62,7 +62,6 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- vim: ts=2 sts=2 sw=2 et
 vim.opt.conceallevel = 1
 
 vim.opt.wrap = false
@@ -72,3 +71,14 @@ vim.filetype.add {
     tmpl = 'html',
   },
 }
+
+-- tabs
+
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+
+-- local
+vim.spelllang = 'en_us'
+vim.opt.spell = true
+
+-- vim: ts=2 sts=2 sw=2 et
