@@ -50,7 +50,7 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Jumps half a page down' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Jumps half a page up' })
 
 -- Move visual mode selection up and down
-vim.keymap.set('v', 'N', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'E', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- vim: ts=2 sts=2 sw=2 et
