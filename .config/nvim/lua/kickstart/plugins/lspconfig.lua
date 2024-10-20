@@ -190,6 +190,8 @@ return {
               '--out-format',
               'json',
               '--issues-exit-code=1',
+              '--enable',
+              'testifylint',
             },
           },
         },
