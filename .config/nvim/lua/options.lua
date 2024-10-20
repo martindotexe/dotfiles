@@ -1,9 +1,3 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
--- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true
-
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -22,9 +16,12 @@ vim.opt.mouse = 'a'
 vim.opt.showmode = false
 
 -- Sync clipboard between OS and Neovim.
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus'
+end)
 
 -- Enable break indent
 vim.opt.breakindent = true
@@ -37,7 +34,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = 'yes:2'
 
 -- Decrease update time
 vim.opt.updatetime = 250
@@ -65,14 +62,6 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- Change tabs to spaces
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 4
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-
 vim.opt.conceallevel = 1
 
 vim.opt.wrap = false
@@ -82,3 +71,14 @@ vim.filetype.add {
     tmpl = 'html',
   },
 }
+
+-- tabs
+
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+
+-- local
+vim.spelllang = 'en_us'
+vim.opt.spell = true
+
+-- vim: ts=2 sts=2 sw=2 et

@@ -16,7 +16,7 @@ local config = wezterm.config_builder()
 
 -- For example, changing the color scheme:
 config.color_scheme = "tokyonight_night"
-config.font_size = 18.0
+config.font_size = 16.0
 config.native_macos_fullscreen_mode = true
 config.font = wezterm.font("JetBrains Mono", { italic = false })
 
