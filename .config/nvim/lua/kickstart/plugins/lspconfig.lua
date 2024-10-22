@@ -191,7 +191,7 @@ return {
               'json',
               '--issues-exit-code=1',
               '--enable',
-              'testifylint',
+              'testifylint,gofumpt,gocyclo,ineffassign,misspell',
             },
           },
         },
