@@ -1,4 +1,3 @@
--- LSP Plugins
 return {
   {
     'folke/lazydev.nvim',
@@ -87,7 +86,30 @@ return {
       capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
       local servers = {
+        html = {
+          filetypes = { 'html' },
+        },
+        templ = {
+          filetypes = { 'templ' },
+          cmd = { 'templ', 'lsp', '-http=localhost:7474', '-log=/Users/martin/code/lsp.log' },
+        },
+        htmx = {
+          filetypes = { 'html', 'templ' },
+        },
+        tailwindcss = {
+          on_attach = on_attach,
+          capabilities = capabilities,
+          filetypes = { 'templ', 'astro', 'javascript', 'typescript', 'react' },
+          settings = {
+            tailwindCSS = {
+              includeLanguages = {
+                templ = 'html',
+              },
+            },
+          },
+        },
         gopls = {
+          filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
           settings = {
             gopls = {
               analyses = {
@@ -100,19 +122,19 @@ return {
             },
           },
         },
-        golangci_lint_ls = {
-          filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
-          init_options = {
-            command = {
-              'golangci-lint',
-              'run',
-              '--out-format',
-              'json',
-              '--issues-exit-code=1',
-              '--enable',
-              'testifylint,gofumpt,gocyclo,ineffassign,misspell',
-            },
-          },
+        -- golangci_lint_ls = {
+        --   filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+        --   init_options = {
+        --     command = {
+        --       'golangci-lint',
+        --       'run',
+        --       '--out-format',
+        --       'json',
+        --       '--issues-exit-code=1',
+        --       '--enable',
+        --       'testifylint,gocyclo,ineffassign,misspell',
+        --     },
+        --   },
         },
         pylsp = {
           cmd = { 'pylsp' },
@@ -120,18 +142,18 @@ return {
           settings = {
             pylsp = {
               plugins = {
-                black = { enabled = true },
-                autopep8 = { enabled = false },
-                yapf = { enabled = false },
-                pylint = { enabled = true, executable = 'pylint' },
-                pyflakes = { enabled = false },
-                pycodestyle = { enabled = false },
-                pylsp_mypy = {
-                  enabled = true,
-                  strict = true,
-                },
-                jedi_completion = { fuzzy = true },
-                pyls_isort = { enabled = true },
+                -- black = { enabled = true },
+                -- autopep8 = { enabled = false },
+                -- yapf = { enabled = false },
+                -- pylint = { enabled = true, executable = 'pylint' },
+                -- pyflakes = { enabled = false },
+                -- pycodestyle = { enabled = false },
+                -- pylsp_mypy = {
+                --   enabled = true,
+                --   strict = true,
+                -- },
+                -- jedi_completion = { fuzzy = true },
+                -- pyls_isort = { enabled = true },
               },
             },
           },
@@ -147,6 +169,12 @@ return {
                 callSnippet = 'Replace',
               },
             },
+          },
+        },
+        svelte = {
+          default_config = {
+            cmd = { 'svelteserver', '--stdio' },
+            filetypes = { 'svelte' },
           },
         },
       }

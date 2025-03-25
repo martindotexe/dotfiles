@@ -8,7 +8,7 @@ return {
       mode = { 'n', 'o', 'x' },
     },
     {
-      'l',
+      'e',
       "<cmd>lua require('spider').motion('e')<CR>",
       mode = { 'n', 'o', 'x' },
     },

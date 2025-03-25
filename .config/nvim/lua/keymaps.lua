@@ -8,39 +8,6 @@ local function map(mode, lhs, rhs, opts)
   vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
--- Basic movement keys
-map('n', 'n', 'j')
-map('n', 'e', 'k')
-map('n', 'i', 'l')
---p('n', 'h', 'h')
-
--- Visual mode mappings
-map('v', 'n', 'j')
-map('v', 'e', 'k')
-map('v', 'i', 'l')
-
--- Remap insert mode to use 'm'
-map('n', 'm', 'i')
-map('n', 'M', 'I')
-
--- Extended movement mappings
-map('n', 'I', '$') -- In to end of line
-map('n', 'H', '0') -- Home of line
-
--- Window navigation
-map('n', '<C-n>', '<C-w>j')
-map('n', '<C-e>', '<C-w>k')
-map('n', '<C-i>', '<C-w>l')
-map('n', '<C-h>', '<C-w>h')
-
--- Move original 'e' functionality to 'l'
-map('n', 'l', 'e') -- Look at end of word
-map('n', 'L', 'E') -- Look at end of WORD
-
--- Search movement
-map('n', 'k', 'n') -- Keep searching forward
-map('n', 'K', 'N') -- Keep searching backward
-
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 map('n', '<Esc>', '<cmd>nohlsearch<CR>')
@@ -75,8 +42,8 @@ map('n', '<C-d>', '<C-d>zz', { desc = 'Jumps half a page down' })
 map('n', '<C-u>', '<C-u>zz', { desc = 'Jumps half a page up' })
 
 -- Move visual mode selection up and down
-map('v', 'N', ":m '>+1<CR>gv=gv")
-map('v', 'E', ":m '<-2<CR>gv=gv")
+map('v', 'J', ":m '>+1<CR>gv=gv")
+map('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Tmux navigation
 map('n', '<Left>', [[<cmd>lua require('tmux').move_left()<cr>]])
