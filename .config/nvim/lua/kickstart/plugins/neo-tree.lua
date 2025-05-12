@@ -20,14 +20,6 @@ return {
           ['\\'] = 'close_window',
         },
       },
-      filtered_items = {
-        show_hidden_count = true,
-        hide_dotfiles = true,
-        hide_gitignored = false,
-        always_show = {
-          '.gitignore',
-        },
-      },
     },
   },
 }

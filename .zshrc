@@ -73,11 +73,9 @@ HIST_STAMPS="yyyy/mm/dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	git
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	colored-man-pages
-	you-should-use
 	aliases
 )
 
@@ -114,3 +112,16 @@ export PATH="$GOPATH/bin:$PATH"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+
+# BEGIN opam configuration
+# This is useful if you're using opam as it adds:
+#   - the correct directories to the PATH
+#   - auto-completion for the opam binary
+# This section can be safely removed at any time if needed.
+[[ ! -r '/Users/martin/.opam/opam-init/init.zsh' ]] || source '/Users/martin/.opam/opam-init/init.zsh' > /dev/null 2> /dev/null
+# END opam configuration
+
+# Generated for envman. Do not edit.
+[ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
+export PATH=$PATH:$HOME/go/bin

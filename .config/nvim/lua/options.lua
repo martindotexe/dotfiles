@@ -10,7 +10,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -20,7 +20,7 @@ vim.opt.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
+	vim.opt.clipboard = "unnamedplus"
 end)
 
 -- Enable break indent
@@ -34,13 +34,12 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes:2'
+vim.opt.signcolumn = "yes:2"
 
 -- Decrease update time
 vim.opt.updatetime = 250
 
 -- Decrease mapped sequence wait time
--- Displays which-key popup sooner
 vim.opt.timeoutlen = 300
 
 -- Configure how new splits should be opened
@@ -51,10 +50,10 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 -- Show which line your cursor is on
 vim.opt.cursorline = true
@@ -62,23 +61,19 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
-vim.opt.conceallevel = 1
+-- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
+-- instead raise a dialog asking if you wish to save the current file(s)
+-- See `:help 'confirm'`
+vim.opt.confirm = true
+
+-- My options
+--
+
+-- vim.opt.conceallevel = 1
 
 vim.opt.wrap = false
 
-vim.filetype.add {
-  extension = {
-    tmpl = 'html',
-  },
-}
-
--- tabs
-
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
-
--- local
-vim.spelllang = 'en_us'
-vim.opt.spell = true
 
 -- vim: ts=2 sts=2 sw=2 et

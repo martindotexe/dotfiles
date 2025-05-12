@@ -12,16 +12,18 @@ end)
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- This is where you actually apply your config choices
-
 -- For example, changing the color scheme:
-config.color_scheme = "tokyonight_night"
-config.font_size = 16.0
-config.native_macos_fullscreen_mode = true
+config.color_scheme = "tokyonight"
+config.font_size = 18.0
+config.window_decorations = "RESIZE"
+config.native_macos_fullscreen_mode = false
 config.font = wezterm.font("JetBrains Mono", { italic = false })
 
 -- Disable ligatures
 config.harfbuzz_features = { "calt=0" }
+
+--Disable the tab bar
+config.enable_tab_bar = true
 
 -- and finally, return the configuration to wezterm
 return config
