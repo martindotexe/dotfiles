@@ -1,0 +1,50 @@
+[user]
+	name = martindotexe
+	email = martinss2000@pm.me
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICxlG1m+1w4lD8r8MWx7Zh71/0J3w+1yPWb3082i4ccp
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
+[commit]
+	gpgsign = true
+[core]
+	editor = nvim
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+[status]
+	short = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+[push]
+	default = simple
+	autoSetupRemote = true
+	followTags = true
+[help]
+	autocorrect = prompt
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = "/opt/1Password/op-ssh-sign"
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
