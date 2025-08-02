@@ -17,7 +17,5 @@ export SAVEHIST=10000                   # Maximum events in history file
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-# golang
-export GOPATH="$WORKSPACE/go"
-export GOBIN="$WORKSPACE/go/bin"
-export GOCACHE="$XDG_CACHE_HOME/go-build"
+# Go
+export PATH=$PATH:/usr/local/go/bin
