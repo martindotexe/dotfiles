@@ -9,7 +9,8 @@ autoload -U compinit; compinit
 source "$ZDOTDIR/plugins/zsh-completions/zsh-completions.plugin.zsh"
 
 # Prompt
-source "$ZDOTDIR/prompt"
+fpath+=($ZDOTDIR/plugins/pure/)
+source "$ZDOTDIR/plugins/pure/pure.zsh"
 
 # Vi mode in zsh
 bindkey -v

@@ -4,3 +4,6 @@
 [submodule ".config/zsh/plugins/zsh-completions"]
 	path = .config/zsh/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
+[submodule ".config/zsh/plugins/pure"]
+	path = .config/zsh/plugins/pure
+	url = https://github.com/sindresorhus/pure.git
