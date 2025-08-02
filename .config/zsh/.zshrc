@@ -14,3 +14,6 @@ export KEYTIMEOUT=1
 
 # Cursor mode
 source "$ZDOTDIR/plugins/cursor_mode"
+
+# Syntax highlighting
+source "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
