@@ -6,3 +6,7 @@ windows:
     layout: tiled
     panes:
       - nvim
+  - window_name: zsh
+    layout: tiled
+    panes:
+      -
