@@ -1,4 +1,4 @@
-source $ZDOTDIR/aliases
+source $ZDOTDIR/aliases.zsh
 
 fpath=($ZDOTDIR/ $fpath)
 
