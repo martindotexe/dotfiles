@@ -5,12 +5,12 @@ if [[ -z $EDITOR ]]; then
 	EDITOR=vi
 fi
 
-CHT_SH_LIST_CACHE_DIR=$HOME/'.cache/chtsh'
+CHT_SH_LIST_CACHE_DIR=$XDG_CACHE_HOME/'chtsh'
 CHT_SH_LIST_CACHE=$CHT_SH_LIST_CACHE_DIR/'cht_sh_cached_list'
 
 #Cache the list on first run
 if [[ ! -f $CHT_SH_LIST_CACHE ]]; then
-	echo "Caching cht.sh list..."
+	echo 'Caching cht.sh list...'
     mkdir -p $CHT_SH_LIST_CACHE_DIR
     curl -s cht.sh/:list | grep -v -E '^[^/\n]*/$' > $CHT_SH_LIST_CACHE
 fi
