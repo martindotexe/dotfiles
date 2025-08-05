@@ -4,7 +4,7 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Prompt
-zinit ice id-as"pure" pick"async.zsh" src"pure.zsh"; zinit light sindresorhus/pure
+zinit ice id-as'pure' compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'; zinit light sindresorhus/pure
 
 # Vi mode - load first without wait
 zinit depth'1' lucid light-mode for \
@@ -75,6 +75,7 @@ setopt hist_find_no_dups
 
 zstyle ":completion:*" matcher-list "m:{a-z}={A-Za-z}"
 zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"
+zstyle :prompt:pure:git:stash show yes
 
 # Key bindings
 bindkey '^P' history-beginning-search-backward
