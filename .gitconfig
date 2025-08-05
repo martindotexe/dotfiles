@@ -40,11 +40,18 @@
 	autocorrect = prompt
 [gpg]
 	format = ssh
-[gpg "ssh"]
-	program = "/opt/1Password/op-ssh-sign"
 [credential "https://github.com"]
-	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
 	helper = !/usr/bin/gh auth git-credential
+[alias]
+    setup-signing = "!f() { \
+        case \"$(uname -s)\" in \
+            Darwin*) \
+                git config gpg.format ssh; \
+                git config gpg.ssh.program /Applications/1Password.app/Contents/MacOS/op-ssh-sign ;; \
+            Linux*) \
+                git config gpg.format ssh; \
+                git config gpg.ssh.program /opt/1Password/op-ssh-sign ;; \
+        esac; \
+    }; f"
