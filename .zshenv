@@ -17,7 +17,7 @@ export VISUAL="nvim"
 export skip_global_compinit=1
 
 # Scripts
-export PATH="$HOME/.dotfiles/scripts:$PATH"
+export PATH=$PATH:"$HOME/.config/scripts"
 
 # Go
 export PATH=$PATH:/usr/local/go/bin
