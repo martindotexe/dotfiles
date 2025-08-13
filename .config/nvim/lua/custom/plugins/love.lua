@@ -1,6 +1,8 @@
 return {
 	"S1M0N38/love2d.nvim",
-	opts = {},
+	opts = {
+		path_to_love_bin = "love-git",
+	},
 	keys = {
 		{ "<leader>v", ft = "lua", desc = "LÖVE" },
 		{ "<leader>vv", "<cmd>LoveRun<cr>", ft = "lua", desc = "Run LÖVE" },
