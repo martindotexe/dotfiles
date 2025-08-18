@@ -1,0 +1,8 @@
+font-family = "Fira Code"
+theme = tokyonight
+
+maximize = true
+
+keybind = clear
+keybind = ctrl+shift+v=paste_from_clipboard
+keybind = all:ctrl+shift+comma=reload_config
