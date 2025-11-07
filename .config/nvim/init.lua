@@ -19,5 +19,15 @@ require("lazy-bootstrap")
 -- [[ Configure and install plugins ]]
 require("lazy-plugins")
 
+-- [[ Espanso tsv converter ]]
+vim.keymap.set("n", "<leader>e", function()
+	-- Delete lines that don't match the pattern
+	vim.cmd([[%g!/\v^.+\t.+$/d]])
+	-- Convert remaining lines
+	vim.cmd([[%s/\v(.+)\t(.+)/  - trigger: ".\1 "\r    replace: "\2"/g]])
+	-- Add "matches:" to the top
+	vim.cmd([[norm! ggOmatches:]])
+end, { noremap = true, desc = "Convert TSV to Espanso YAML" })
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
