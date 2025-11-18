@@ -95,3 +95,6 @@ alias ll='ls -lahF'
 alias lls='ls -lahFtr'
 alias la='ls -A'
 alias lc='ls -CF'
+
+# bun completions
+[ -s "/home/martin/.bun/_bun" ] && source "/home/martin/.bun/_bun"

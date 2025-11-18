@@ -25,10 +25,9 @@ export PATH=$PATH:/usr/local/go/bin
 # Pico8
 export PATH=$PATH:/usr/local/pico-8
 
-# NVM
-export NVM_DIR="$HOME/.config/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Mac
 if [[ "$OSTYPE" == "darwin"* ]]; then
