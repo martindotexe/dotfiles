@@ -97,4 +97,12 @@ alias la='ls -A'
 alias lc='ls -CF'
 
 # bun completions
-[ -s "/home/martin/.bun/_bun" ] && source "/home/martin/.bun/_bun"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # macOS
+  [ -s "/Users/martin/.bun/_bun" ] && source "/Users/martin/.bun/_bun"
+  . "$HOME/.config/local/share/../bin/env"
+  export PATH="$HOME/.local/bin:$PATH"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  # Linux
+  [ -s "/home/martin/.bun/_bun" ] && source "/home/martin/.bun/_bun"
+fi

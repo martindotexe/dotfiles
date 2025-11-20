@@ -29,6 +29,10 @@ export PATH=$PATH:/usr/local/pico-8
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 # Mac
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH=$PATH:/opt/homebrew/bin
