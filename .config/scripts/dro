@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Run it from directory where video file is in
+
+# Check if an input file is provided
+if [[ $# -eq 0 ]]; then
+  echo "Usage: $0 <input_mov_file>"
+  exit 1
+fi
+
+# Get the input file name (without extension)
+input_file="${1%.*}"
+
+# Get the output file name (same name as input but with .mp4 extension)
+output_file="${input_file}.mp4"
+
+# Non Nvidia option
+ffmpeg -i "$input_file.mov" -vf yadif -codec:v libx264 -crf 1 -bf 2 -flags +cgop -pix_fmt yuv420p -codec:a aac -strict -2 -b:a 384k -r:a 48000 -movflags faststart "$output_file"
+
+echo "Conversion completed. Output file: $output_file"
