@@ -1,0 +1,12 @@
+[submodule ".config/zsh/fsh"]
+	path = .config/zsh/fsh
+	url = https://github.com/zdharma-continuum/fast-syntax-highlighting
+[submodule ".config/zsh/pure"]
+	path = .config/zsh/pure
+	url = https://github.com/sindresorhus/pure
+[submodule ".config/zsh/zsh-autosuggestions"]
+	path = .config/zsh/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule ".config/zsh/zsh-completions"]
+	path = .config/zsh/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
