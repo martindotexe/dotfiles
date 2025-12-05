@@ -3,15 +3,19 @@ fpath+=($HOME/.config/zsh/pure)
 autoload -U promptinit; promptinit
 prompt pure
 
+# Zsh completions
+fpath=($HOME/.config/zsh/zsh-completions/src $fpath)
+
+# Fzf-tab
+autoload -U compinit; compinit
+source $HOME/.config/zsh/fzf-tab/fzf-tab.plugin.zsh
+
 # Fsh (zdharma-continuum/fast-syntax-highlighting)
 source $HOME/.config/zsh/fsh/fast-syntax-highlighting.plugin.zsh
 
 # Zsh-autosuggestions (zsh-users/zsh-autosuggestions)
 source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-
-# Zsh completions
-fpath=($HOME/.config/zsh/zsh-completions/src $fpath)
 
 bindkey '^U' kill-whole-line
 bindkey '^W' backward-kill-word
