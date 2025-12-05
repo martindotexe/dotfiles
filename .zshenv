@@ -40,3 +40,14 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PATH=$PATH:/opt/homebrew/bin
 fi
+
+# bun completions
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # macOS
+  [ -s "/Users/martin/.bun/_bun" ] && source "/Users/martin/.bun/_bun"
+  . "$HOME/.config/local/share/../bin/env"
+  export PATH="$HOME/.local/bin:$PATH"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+  # Linux
+  [ -s "/home/martin/.bun/_bun" ] && source "/home/martin/.bun/_bun"
+fi
