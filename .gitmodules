@@ -13,3 +13,6 @@
 [submodule ".config/zsh/fzf-tab"]
 	path = .config/zsh/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab
+[submodule ".config/tmux/plugins/tpm"]
+	path = .config/tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
