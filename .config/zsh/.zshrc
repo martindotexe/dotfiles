@@ -3,6 +3,9 @@ fpath+=($HOME/.config/zsh/pure)
 autoload -U promptinit; promptinit
 prompt pure
 
+# Zsh vi mode
+source $HOME/.config/zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
 # Zsh completions
 fpath=($HOME/.config/zsh/zsh-completions/src $fpath)
 
@@ -17,21 +20,40 @@ source $HOME/.config/zsh/fsh/fast-syntax-highlighting.plugin.zsh
 source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
+bindkey -v
+
 bindkey '^U' kill-whole-line
 bindkey '^W' backward-kill-word
 
-bindkey '^P' up-line-or-search
-bindkey '^N' down-line-or-search
+function zvm_after_init() {
+  zvm_bindkey viins '^P' up-line-or-search
+  zvm_bindkey viins '^N' down-line-or-search
+  zvm_bindkey vicmd '^P' up-line-or-search
+  zvm_bindkey vicmd '^N' down-line-or-search
+}
 
-# Emacs mode
-# bindkey -e
+# 10ms for key sequences
+KEYTIMEOUT=25
+
+# Vi-mode
+ZVM_VI_SURROUND_BINDKEY=s-prefix
+ZVM_SYSTEM_CLIPBOARD_ENABLED=true
+
+# History
+HISTFILE=$ZDOTDIR/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+setopt HIST_SAVE_NO_DUPS
+setopt INC_APPEND_HISTORY
+
+# Options
+setopt extendedglob globstarshort
+setopt incappendhistory extendedhistory
+setopt autocd autopushd
+setopt rcexpandparam rcquotes
+setopt cbases octalzeroes
 
 # Lang
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
-HISTSIZE=10000
-HISTFILE="$ZDOTDIR/.zsh_history"
-SAVEHIST=$HISTSIZE
-HISTDUP=erase
 

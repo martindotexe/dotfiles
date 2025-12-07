@@ -1,6 +1,3 @@
-export DOTFILES="$HOME/.dotfiles"
-export WORKSPACE="$HOME/workspace"
-
 # TERM color
 export TERM=xterm-256color
 
@@ -27,10 +24,6 @@ export PATH=$PATH:/usr/local/go/bin
 
 # Pico8
 export PATH=$PATH:/usr/local/pico-8
-
-#bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
 
 # Bun
 export BUN_INSTALL="$HOME/.bun"
