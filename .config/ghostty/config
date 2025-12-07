@@ -1,4 +1,7 @@
 font-family = "Fira Code"
+font-size = 12
 theme = TokyoNight
 
 maximize = true
+
+keybind = ctrl+shift+r=reload_config
