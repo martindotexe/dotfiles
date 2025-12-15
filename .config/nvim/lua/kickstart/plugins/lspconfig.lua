@@ -249,6 +249,9 @@ return {
 				},
 			}
 
+			-- Mason
+			require("lspconfig").gleam.setup({})
+
 			-- Ensure the servers and tools above are installed
 			--
 			-- To check the current status of installed tools and/or manually install

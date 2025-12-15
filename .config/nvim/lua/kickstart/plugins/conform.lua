@@ -35,6 +35,7 @@ return {
 				-- python = { "isort", "black" },
 				--
 				-- You can use 'stop_after_first' to run the first available formatter from the list
+				gleam = { "gleam" },
 				javascript = { "prettierd" },
 				typescript = { "prettierd" },
 				svelte = { "prettierd" },
