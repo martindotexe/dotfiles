@@ -5,3 +5,6 @@ theme = TokyoNight
 maximize = true
 
 keybind = ctrl+shift+r=reload_config
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
