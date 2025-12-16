@@ -249,9 +249,10 @@ return {
 				},
 			}
 
+			-- Gleam stuff
+			vim.lsp.config("gleam", {})
+			vim.lsp.enable({ "gleam" })
 			-- Mason
-			require("lspconfig").gleam.setup({})
-
 			-- Ensure the servers and tools above are installed
 			--
 			-- To check the current status of installed tools and/or manually install
@@ -281,7 +282,8 @@ return {
 						-- by the server configuration above. Useful when disabling
 						-- certain features of an LSP (for example, turning off formatting for ts_ls)
 						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
+						vim.lsp.config(server_name, server)
+						vim.lsp.enable({ server_name })
 					end,
 				},
 			})
