@@ -20,6 +20,9 @@ source $HOME/.config/zsh/fsh/fast-syntax-highlighting.plugin.zsh
 source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
+# Temporary nightly nvim
+alias nvim-nightly="~/nvim-nightly/bin/nvim"
+
 bindkey -v
 
 bindkey '^U' kill-whole-line
