@@ -127,24 +127,27 @@ require("conform").setup({
 	},
 })
 
-require("nvim-treesitter").setup({
-	ensure_installed = {
-		"bash",
-		"c",
-		"diff",
-		"html",
-		"lua",
-		"luadoc",
-		"markdown",
-		"markdown_inline",
-		"query",
-		"vim",
-		"vimdoc",
-		"gleam",
-	},
+-- Treesitter
+require("nvim-treesitter").setup({})
 
-	auto_install = true,
-	highlight = {
-		enable = true,
-	},
+local parsers = {
+	"bash",
+	"c",
+	"diff",
+	"html",
+	"lua",
+	"luadoc",
+	"markdown",
+	"markdown_inline",
+	"query",
+	"vim",
+	"vimdoc",
+	"gleam",
+}
+require("nvim-treesitter").install(parsers)
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = parsers,
+	callback = function()
+		vim.treesitter.start()
+	end,
 })

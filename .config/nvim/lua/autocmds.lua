@@ -10,10 +10,3 @@ autocmd("TextYankPost", {
 	end,
 	group = highlight_group,
 })
-
-autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*" },
-	callback = function()
-		vim.treesitter.start()
-	end,
-})
