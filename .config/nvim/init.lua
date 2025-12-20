@@ -1,62 +1,112 @@
+-- Neovim configuration for nvim nightly 0.12+
+-- Using built-in package manager (vim.pack.add)
+
+-- ========================================
+-- Plugins
+-- ========================================
+
 vim.pack.add({
+    -- UI and theme
     { src = "https://github.com/folke/which-key.nvim" },
     { src = "https://github.com/folke/tokyonight.nvim" },
+
+    -- File management
     { src = "https://github.com/stevearc/oil.nvim" },
+
+    -- Mini ecosystem
     { src = "https://github.com/nvim-mini/mini.statusline" },
+    { src = "https://github.com/nvim-mini/mini.pairs" },
+    { src = "https://github.com/nvim-mini/mini.pick" },
+
+    -- Git integration
+    { src = "https://github.com/lewis6991/gitsigns.nvim" },
+
+    -- Syntax highlighting
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
+
+    -- LSP support
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/mason-org/mason.nvim" },
     { src = "https://github.com/mason-org/mason-lspconfig.nvim" },
     { src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
+
+    -- Completion
     {
         src = "https://github.com/Saghen/blink.cmp",
         version = vim.version.range("*"),
     },
 })
+
+-- ========================================
 -- Options
+-- ========================================
 local o = vim.o
 local opt = vim.opt
 
+-- Leader keys
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
-o.clipboard = "unnamedplus"
-o.guicursor = "i:ver100-iCursor" -- Use block cursor in insert mode
+-- UI appearance
+o.guicursor = "i:ver100-iCursor" -- Vertical bar cursor in insert mode
 o.colorcolumn = "80" -- Highlight column 80
 o.signcolumn = "yes:1" -- Always show sign column
 o.termguicolors = true -- Enable true colors
-o.swapfile = false -- Disable swap files
-o.expandtab = true -- Use spaces instead of tabs
-o.tabstop = 4 -- Number of spaces for a tab
-o.softtabstop = 4 -- Number of spaces for a tab when editing
-o.shiftwidth = 4 -- Number of spaces for autoindent
-o.shiftround = true -- Round indent to multiple of shiftwidth
-o.list = true
-opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" } -- Sets how neovim will display certain whitespace characters in the editor.
+o.cursorline = true -- Highlight current line
+o.showmode = false -- Hide mode since it's in statusline
+o.winborder = "rounded" -- Rounded borders for floating windows
+o.list = true -- Show whitespace characters
+opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+-- Line numbers
 o.number = true -- Show line numbers
 o.relativenumber = true -- Show relative line numbers
-o.numberwidth = 2 -- Width of the line number column
+o.numberwidth = 2 -- Width of line number column
+
+-- Indentation
+o.expandtab = true -- Use spaces instead of tabs
+o.tabstop = 4 -- Number of spaces per tab
+o.softtabstop = 4 -- Number of spaces per tab when editing
+o.shiftwidth = 4 -- Number of spaces for autoindent
+o.shiftround = true -- Round indent to multiple of shiftwidth
+
+-- Text display
 o.wrap = false -- Disable line wrapping
-o.cursorline = true -- Highlight the current line
-o.scrolloff = 10 -- Keep 10 lines above and below the cursor
-o.undofile = true -- Enable persistent undo
-opt.completeopt = { "menuone", "popup", "noinsert" } -- Options for completion menu
-o.winborder = "rounded" -- Use rounded borders for windows
-o.showmode = false -- Don't show the mode, since it's already in the status line
+o.scrolloff = 10 -- Keep 10 lines above/below cursor
+
+-- Search behavior
 o.ignorecase = true -- Ignore case in search
-o.smartcase = true -- Use case in search if case
-o.updatetime = 250 -- Decrease update time
-o.timeoutlen = 300 -- Decrease mapped sequence wait time
-o.splitright = true -- Configure how new vertical splits should be opened
-o.splitbelow = true -- Configure how new horizontal splits should be opened
-o.inccommand = "split" -- Preview substitutions live, as you type!
-o.confirm = true -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
+o.smartcase = true -- Case-sensitive if uppercase present
+o.inccommand = "split" -- Live preview of substitutions
 
-vim.cmd.filetype("plugin indent on") -- Enable filetype detection, plugins, and indentation
+-- Completion
+opt.completeopt = { "menuone", "popup", "noinsert" }
 
+-- Splits
+o.splitright = true -- Vertical splits open to the right
+o.splitbelow = true -- Horizontal splits open below
+
+-- File handling
+o.swapfile = false -- Disable swap files
+o.undofile = true -- Enable persistent undo
+o.confirm = true -- Prompt to save before quitting
+
+-- Performance
+o.updatetime = 250 -- Faster completion and git signs
+o.timeoutlen = 300 -- Faster key sequence completion
+
+-- Clipboard
+o.clipboard = "unnamedplus" -- Use system clipboard
+
+vim.cmd.filetype("plugin indent on")
+
+-- ========================================
 -- Keymaps
+-- ========================================
 
+-- Helper function to set keymaps with default options (noremap, silent).
+-- Accepts an optional opts table to extend or override defaults.
 local function map(mode, lhs, rhs, opts)
     local options = { noremap = true, silent = true }
     if opts then
@@ -65,29 +115,49 @@ local function map(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, opts)
 end
 
--- Clear highlights on search when pressing <Esc> in normal mode
-map("n", "<Esc>", "<cmd>nohlsearch<CR>")
+-- General editor
+map("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
+map("n", "<space>", "<Nop>") -- Disable space in normal mode
+map("n", "<C-d>", "<C-d>zz") -- Half page down, center cursor
+map("n", "<C-u>", "<C-u>zz") -- Half page up, center cursor
+map("v", "J", ":m '>+1<CR>gv=gv") -- Move selection down
+map("v", "K", ":m '<-2<CR>gv=gv") -- Move selection up
 
--- Better half page jumps. Snaps cursor to the middle.
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
-map("v", "J", ":m '>+1<CR>gv=gv") -- Move visual mode selection down
-map("v", "K", ":m '<-2<CR>gv=gv") -- Move visual mode selection up
-map("n", "<space>", "<Nop>")
+-- Window management
 map("n", "<leader>v", "<cmd>vsplit<CR>", { desc = "[V]ertical split" })
 map("n", "<leader>h", "<cmd>split<CR>", { desc = "[H]orizontal split" })
-map("n", "<leader>ps", "<cmd>lua vim.pack.update()<CR>", { desc = "[P]lugin [S]ync" })
+
+-- File browser
 map("n", "\\", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+-- Fuzzy finder
+map("n", "<leader>ff", "<cmd>Pick files<CR>", { desc = "[F]ind [F]iles" })
+map("n", "<leader>fg", "<cmd>Pick grep_live<CR>", { desc = "[F]ind by [G]rep" })
+map("n", "<leader>fb", "<cmd>Pick buffers<CR>", { desc = "[F]ind [B]uffers" })
+
+-- Git operations
+map("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", { desc = "[G]it [P]review hunk" })
+map("n", "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>", { desc = "[G]it [S]tage hunk" })
+map("n", "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<CR>", { desc = "[G]it [U]ndo stage hunk" })
+map("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "[G]it [R]eset hunk" })
+map("n", "<leader>gb", "<cmd>Gitsigns blame_line<CR>", { desc = "[G]it [B]lame line" })
+
+-- LSP
 map("n", "<leader>f", function()
     vim.lsp.buf.format()
 end, { desc = "[F]ormat file" })
 
+-- Plugin management
+map("n", "<leader>ps", "<cmd>lua vim.pack.update()<CR>", { desc = "[P]lugin [S]ync" })
+
+-- ========================================
 -- Autocommands
+-- ========================================
 
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
--- Highlight yanked text
+-- Briefly highlight yanked text
 local highlight_group = augroup("YankHighlight", { clear = true })
 autocmd("TextYankPost", {
     pattern = "*",
@@ -97,6 +167,9 @@ autocmd("TextYankPost", {
     group = highlight_group,
 })
 
+-- Auto-format on save when LSP is attached.
+-- Uses async=false to ensure formatting completes before save.
+-- The client_id ensures only the attached LSP server formats the buffer.
 autocmd("LspAttach", {
     group = augroup("lsp", { clear = true }),
     callback = function(args)
@@ -109,8 +182,14 @@ autocmd("LspAttach", {
     end,
 })
 
+-- ========================================
 -- Theme
+-- ========================================
 vim.cmd([[colorscheme tokyonight-night]])
+
+-- ========================================
+-- Plugin Configuration
+-- ========================================
 
 -- Oil
 require("oil").setup({
@@ -128,12 +207,29 @@ require("blink.cmp").setup({
     fuzzy = { implementation = "prefer_rust_with_warning" },
 })
 
--- Mini staatusline
+-- Mini statusline
 local statusline = require("mini.statusline")
 statusline.setup()
 statusline.section_location = function()
     return "%2l:%-2v"
 end
+
+-- Mini pairs
+require("mini.pairs").setup()
+
+-- Mini pick
+require("mini.pick").setup()
+
+-- Gitsigns
+require("gitsigns").setup({
+    signs = {
+        add = { text = "+" },
+        change = { text = "~" },
+        delete = { text = "_" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
+    },
+})
 
 -- Treesitter
 require("nvim-treesitter").setup({})
@@ -147,7 +243,12 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- LSP
+-- ========================================
+-- LSP Configuration
+-- ========================================
+
+-- Define LSP servers and their settings.
+-- Servers listed here will be auto-installed via Mason.
 local servers = {
     pyright = {},
     ts_ls = {},
@@ -165,19 +266,25 @@ local servers = {
     },
 }
 
+-- Extract server names for Mason to install.
+-- Also add additional tools like formatters.
 local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, {
-    "stylua", -- Used to format Lua code
+    "stylua", -- Lua formatter
 })
+
+-- Setup Mason and auto-install tools
 require("mason").setup({})
 require("mason-lspconfig").setup({})
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
--- Enable servers that can't be installed via mason
+-- Add servers that aren't available via Mason (e.g., system-installed).
+-- tbl_extend with "keep" preserves existing server configs and adds new ones.
 servers = vim.tbl_extend("keep", servers, {
     gleam = {},
 })
 
+-- Configure and enable all LSP servers
 for server, settings in pairs(servers) do
     vim.lsp.config(server, settings)
     vim.lsp.enable(server)

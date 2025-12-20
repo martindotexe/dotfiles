@@ -5,6 +5,10 @@
       "src": "https://github.com/Saghen/blink.cmp",
       "version": ">=0.0.0"
     },
+    "gitsigns.nvim": {
+      "rev": "5813e4878748805f1518cee7abb50fd7205a3a48",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
     "mason-lspconfig.nvim": {
       "rev": "bf9e7205192015dc48727744f21e09ac986664f9",
       "src": "https://github.com/mason-org/mason-lspconfig.nvim"
@@ -16,6 +20,14 @@
     "mason.nvim": {
       "rev": "57e5a8addb8c71fb063ee4acda466c7cf6ad2800",
       "src": "https://github.com/mason-org/mason.nvim"
+    },
+    "mini.pairs": {
+      "rev": "d5a29b6254dad07757832db505ea5aeab9aad43a",
+      "src": "https://github.com/nvim-mini/mini.pairs"
+    },
+    "mini.pick": {
+      "rev": "6b7974543b17cf2e294993fc3d8545a342258232",
+      "src": "https://github.com/nvim-mini/mini.pick"
     },
     "mini.statusline": {
       "rev": "3e96596ebe51b899874d8174409cdc4f3c749d9a",
