@@ -46,38 +46,38 @@ local opt = vim.opt
 -- Leader keys
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-vim.g.have_nerd_font = true
 
 -- UI appearance
+vim.g.have_nerd_font = true      -- Nerdfonts enabled
 o.guicursor = "i:ver100-iCursor" -- Vertical bar cursor in insert mode
-o.colorcolumn = "80" -- Highlight column 80
-o.signcolumn = "yes:1" -- Always show sign column
-o.termguicolors = true -- Enable true colors
-o.cursorline = true -- Highlight current line
-o.showmode = false -- Hide mode since it's in statusline
-o.winborder = "rounded" -- Rounded borders for floating windows
-o.list = true -- Show whitespace characters
+o.colorcolumn = "80"             -- Highlight column 80
+o.signcolumn = "yes:1"           -- Always show sign column
+o.termguicolors = true           -- Enable true colors
+o.cursorline = true              -- Highlight current line
+o.showmode = false               -- Hide mode since it's in statusline
+o.winborder = "rounded"          -- Rounded borders for floating windows
+o.list = true                    -- Show whitespace characters
 opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Line numbers
-o.number = true -- Show line numbers
+o.number = true         -- Show line numbers
 o.relativenumber = true -- Show relative line numbers
-o.numberwidth = 2 -- Width of line number column
+o.numberwidth = 2       -- Width of line number column
 
 -- Indentation
-o.expandtab = true -- Use spaces instead of tabs
-o.tabstop = 4 -- Number of spaces per tab
-o.softtabstop = 4 -- Number of spaces per tab when editing
-o.shiftwidth = 4 -- Number of spaces for autoindent
+o.expandtab = true  -- Use spaces instead of tabs
+o.tabstop = 4       -- Number of spaces per tab
+o.softtabstop = 4   -- Number of spaces per tab when editing
+o.shiftwidth = 4    -- Number of spaces for autoindent
 o.shiftround = true -- Round indent to multiple of shiftwidth
 
 -- Text display
-o.wrap = false -- Disable line wrapping
+o.wrap = false   -- Disable line wrapping
 o.scrolloff = 10 -- Keep 10 lines above/below cursor
 
 -- Search behavior
-o.ignorecase = true -- Ignore case in search
-o.smartcase = true -- Case-sensitive if uppercase present
+o.ignorecase = true    -- Ignore case in search
+o.smartcase = true     -- Case-sensitive if uppercase present
 o.inccommand = "split" -- Live preview of substitutions
 
 -- Completion
@@ -89,8 +89,8 @@ o.splitbelow = true -- Horizontal splits open below
 
 -- File handling
 o.swapfile = false -- Disable swap files
-o.undofile = true -- Enable persistent undo
-o.confirm = true -- Prompt to save before quitting
+o.undofile = true  -- Enable persistent undo
+o.confirm = true   -- Prompt to save before quitting
 
 -- Performance
 o.updatetime = 250 -- Faster completion and git signs
@@ -117,11 +117,11 @@ end
 
 -- General editor
 map("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
-map("n", "<space>", "<Nop>") -- Disable space in normal mode
-map("n", "<C-d>", "<C-d>zz") -- Half page down, center cursor
-map("n", "<C-u>", "<C-u>zz") -- Half page up, center cursor
-map("v", "J", ":m '>+1<CR>gv=gv") -- Move selection down
-map("v", "K", ":m '<-2<CR>gv=gv") -- Move selection up
+map("n", "<space>", "<Nop>")             -- Disable space in normal mode
+map("n", "<C-d>", "<C-d>zz")             -- Half page down, center cursor
+map("n", "<C-u>", "<C-u>zz")             -- Half page up, center cursor
+map("v", "J", ":m '>+1<CR>gv=gv")        -- Move selection down
+map("v", "K", ":m '<-2<CR>gv=gv")        -- Move selection up
 
 -- Window management
 map("n", "<leader>v", "<cmd>vsplit<CR>", { desc = "[V]ertical split" })
@@ -137,8 +137,6 @@ map("n", "<leader>fb", "<cmd>Pick buffers<CR>", { desc = "[F]ind [B]uffers" })
 
 -- Git operations
 map("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", { desc = "[G]it [P]review hunk" })
-map("n", "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>", { desc = "[G]it [S]tage hunk" })
-map("n", "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<CR>", { desc = "[G]it [U]ndo stage hunk" })
 map("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "[G]it [R]eset hunk" })
 map("n", "<leader>gb", "<cmd>Gitsigns blame_line<CR>", { desc = "[G]it [B]lame line" })
 
