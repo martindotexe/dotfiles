@@ -151,7 +151,6 @@ map("n", "<leader>fb", "<cmd>Pick buffers<CR>", { desc = "[F]ind [B]uffers" })
 
 -- Git operations
 map("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", { desc = "[G]it [P]review hunk" })
-map("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "[G]it [R]eset hunk" })
 map("n", "<leader>gb", "<cmd>Gitsigns blame_line<CR>", { desc = "[G]it [B]lame line" })
 
 -- Plugin management
@@ -230,12 +229,22 @@ require("mini.pick").setup()
 -- Gitsigns
 require("gitsigns").setup({
     signs = {
-        add = { text = "+" },
-        change = { text = "~" },
+        add = { text = "┃" },
+        change = { text = "┃" },
         delete = { text = "_" },
         topdelete = { text = "‾" },
         changedelete = { text = "~" },
+        untracked = { text = "┆" },
     },
+    signs_staged = {
+        add = { text = "┃" },
+        change = { text = "┃" },
+        delete = { text = "_" },
+        topdelete = { text = "‾" },
+        changedelete = { text = "~" },
+        untracked = { text = "┆" },
+    },
+    signs_staged_enable = true,
 })
 
 -- Treesitter
