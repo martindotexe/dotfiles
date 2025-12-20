@@ -102,6 +102,14 @@ o.clipboard = "unnamedplus" -- Use system clipboard
 vim.cmd.filetype("plugin indent on")
 
 -- ============================================================================
+-- Diagnostics
+-- ============================================================================
+
+vim.diagnostic.config({
+    virtual_text = true,
+})
+
+-- ============================================================================
 -- Keymaps
 -- ============================================================================
 
@@ -123,6 +131,12 @@ map("n", "<C-u>", "<C-u>zz")             -- Half page up, center cursor
 map("v", "J", ":m '>+1<CR>gv=gv")        -- Move selection down
 map("v", "K", ":m '<-2<CR>gv=gv")        -- Move selection up
 
+-- Diagnostics
+map("n", "<leader>dt", function()
+    local config = vim.diagnostic.config()
+    vim.diagnostic.config({ virtual_text = not config.virtual_text })
+end, { desc = "[D]iagnostic [T]oggle virtual text" })
+
 -- Window management
 map("n", "<leader>v", "<cmd>vsplit<CR>", { desc = "[V]ertical split" })
 map("n", "<leader>h", "<cmd>split<CR>", { desc = "[H]orizontal split" })
@@ -139,11 +153,6 @@ map("n", "<leader>fb", "<cmd>Pick buffers<CR>", { desc = "[F]ind [B]uffers" })
 map("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", { desc = "[G]it [P]review hunk" })
 map("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "[G]it [R]eset hunk" })
 map("n", "<leader>gb", "<cmd>Gitsigns blame_line<CR>", { desc = "[G]it [B]lame line" })
-
--- LSP
-map("n", "<leader>f", function()
-    vim.lsp.buf.format()
-end, { desc = "[F]ormat file" })
 
 -- Plugin management
 map("n", "<leader>ps", "<cmd>lua vim.pack.update()<CR>", { desc = "[P]lugin [S]ync" })
@@ -200,7 +209,7 @@ require("oil").setup({
 require("blink.cmp").setup({
     completion = { documentation = { auto_show = true } },
     sources = {
-        default = { "lsp" },
+        default = { "lsp", "path", "buffer" },
     },
     fuzzy = { implementation = "prefer_rust_with_warning" },
 })
