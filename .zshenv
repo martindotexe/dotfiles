@@ -46,3 +46,4 @@ elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   [ -s "/home/martin/.bun/_bun" ] && source "/home/martin/.bun/_bun"
   export PATH="/opt/1Password/op-ssh-sign:$PATH"
 fi
+. "/Users/martin/.local/share/bob/env/env.sh"

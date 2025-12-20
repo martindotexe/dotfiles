@@ -3,6 +3,9 @@ fpath+=($HOME/.config/zsh/pure)
 autoload -U promptinit; promptinit
 prompt pure
 
+# Bob
+export PATH=$PATH:$HOME/.local/share/bob/nvim-bin
+
 # Zsh vi mode
 source $HOME/.config/zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
@@ -19,9 +22,6 @@ source $HOME/.config/zsh/fsh/fast-syntax-highlighting.plugin.zsh
 # Zsh-autosuggestions (zsh-users/zsh-autosuggestions)
 source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-
-# Temporary nightly nvim
-alias nvim-nightly="~/nvim-nightly/bin/nvim"
 
 bindkey -v
 
