@@ -208,7 +208,7 @@ require("oil").setup({
 require("blink.cmp").setup({
     completion = { documentation = { auto_show = true } },
     sources = {
-        default = { "lsp", "path", "buffer" },
+        default = { "lsp", "path" },
     },
     fuzzy = { implementation = "prefer_rust_with_warning" },
 })
