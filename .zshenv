@@ -40,7 +40,9 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
   [ -s "/Users/martin/.bun/_bun" ] && source "/Users/martin/.bun/_bun"
   . "$HOME/.config/local/share/../bin/env"
   export PATH="$HOME/.local/bin:$PATH"
+  export PATH="/Applications/1Password.app/Contents/MacOS/op-ssh-sign:$PATH"
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # Linux
   [ -s "/home/martin/.bun/_bun" ] && source "/home/martin/.bun/_bun"
+  export PATH="/opt/1Password/op-ssh-sign:$PATH"
 fi
