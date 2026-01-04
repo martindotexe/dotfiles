@@ -194,7 +194,10 @@ autocmd("LspAttach", {
         autocmd("BufWritePre", {
             buffer = args.buf,
             callback = function()
-                vim.lsp.buf.format({ async = false, id = args.data.client_id })
+                local client = vim.lsp.get_client_by_id(args.data.client_id)
+                if client and client.supports_method("textDocument/formatting") then
+                    vim.lsp.buf.format({ async = false, id = args.data.client_id })
+                end
             end,
         })
     end,
@@ -260,9 +263,11 @@ require("gitsigns").setup({
 })
 
 -- Treesitter
-require("nvim-treesitter").setup({})
-
 local parsers = { "bash", "lua", "luadoc", "markdown", "gleam" }
+require("nvim-treesitter").setup({
+    ensure_installed = parsers,
+})
+
 require("nvim-treesitter").install(parsers)
 vim.api.nvim_create_autocmd("FileType", {
     pattern = parsers,
