@@ -263,7 +263,7 @@ require("gitsigns").setup({
 })
 
 -- Treesitter
-local parsers = { "bash", "lua", "luadoc", "markdown", "gleam" }
+local parsers = { "bash", "lua", "luadoc", "markdown", "gleam", "json" }
 require("nvim-treesitter").setup({
     ensure_installed = parsers,
 })
