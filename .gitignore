@@ -4,3 +4,4 @@
 .zsh_sessions
 .config/tmux/plugins/*
 !.config/tmux/plugins/tpm
+.config/nvim/nvim-pack-lock.json
