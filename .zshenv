@@ -1,3 +1,6 @@
+typeset -U PATH path
+export XMODIFIERS='@im=fcitx'
+
 # TERM color
 export TERM=xterm-256color
 
@@ -45,6 +48,6 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # Linux
   [ -s "/home/martin/.bun/_bun" ] && source "/home/martin/.bun/_bun"
-  export PATH="/opt/1Password/op-ssh-sign:$PATH"
+  export PATH=$PATH:/opt/1Password
   export PATH=$PATH:$HOME/.local/share/bob/nvim-bin
 fi
