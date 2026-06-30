@@ -3,6 +3,9 @@ fpath+=($HOME/.config/zsh/pure)
 autoload -U promptinit; promptinit
 prompt pure
 
+# Bob
+export PATH=$PATH:$HOME/.local/share/bob/nvim-bin
+
 # Zsh vi mode
 source $HOME/.config/zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
