@@ -3,11 +3,6 @@ fpath+=($HOME/.config/zsh/pure)
 autoload -U promptinit; promptinit
 prompt pure
 
-# Bob
-export PATH=$PATH:$HOME/.local/share/bob/nvim-bin
-
-# Zsh vi mode
-source $HOME/.config/zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 # Zsh completions
 fpath=($HOME/.config/zsh/zsh-completions/src $fpath)
@@ -23,6 +18,9 @@ source $HOME/.config/zsh/fsh/fast-syntax-highlighting.plugin.zsh
 source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
+# Zsh vi mode
+source $HOME/.config/zsh/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
 bindkey -v
 
 bindkey '^U' kill-whole-line
@@ -35,7 +33,7 @@ function zvm_after_init() {
   zvm_bindkey vicmd '^N' down-line-or-search
 }
 
-# 10ms for key sequences
+# 25ms for key sequences
 KEYTIMEOUT=25
 
 # Vi-mode
@@ -47,7 +45,6 @@ HISTFILE=$ZDOTDIR/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 setopt HIST_SAVE_NO_DUPS
-setopt INC_APPEND_HISTORY
 
 # Options
 setopt extendedglob globstarshort
@@ -59,4 +56,3 @@ setopt cbases octalzeroes
 # Lang
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
-
