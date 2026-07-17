@@ -6,8 +6,8 @@ export TERM=xterm-256color
 
 # XDG
 export XDG_CONFIG_HOME=$HOME/.config
-export XDG_DATA_HOME=$XDG_CONFIG_HOME/local/share
-export XDG_CACHE_HOME=$XDG_CONFIG_HOME/cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_CACHE_HOME=$HOME/.cache
 
 # Zsh
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
@@ -28,26 +28,22 @@ export PATH=$PATH:/usr/local/go/bin
 # Pico8
 export PATH=$PATH:/usr/local/pico-8
 
-# Bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+# Bob
+[[ -f "$HOME/.local/share/bob/env/env.sh" ]] && source "$HOME/.local/share/bob/env/env.sh"
 
-# Mac
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  export PATH=$PATH:/opt/homebrew/bin
-fi
-
-# bun completions
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # macOS
-  [ -s "/Users/martin/.bun/_bun" ] && source "/Users/martin/.bun/_bun"
-  . "$HOME/.config/local/share/../bin/env"
-  export PATH="$HOME/.local/bin:$PATH"
-  export PATH="/Applications/1Password.app/Contents/MacOS/op-ssh-sign:$PATH"
-  export PATH=$PATH:/Users/martin/.local/share/bob/env/env.sh
+  export PATH=$PATH:/Applications/1Password.app/Contents/MacOS
+
+  # Homebrew (Apple Silicon)
+  if [[ -d /opt/homebrew/bin ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  # Homebrew (Intel)
+  elif [[ -d /usr/local/Homebrew/bin ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
+
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
   # Linux
-  [ -s "/home/martin/.bun/_bun" ] && source "/home/martin/.bun/_bun"
   export PATH=$PATH:/opt/1Password
-  export PATH=$PATH:$HOME/.local/share/bob/nvim-bin
 fi
