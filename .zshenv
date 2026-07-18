@@ -28,8 +28,8 @@ export PATH=$PATH:/usr/local/go/bin
 # Pico8
 export PATH=$PATH:/usr/local/pico-8
 
-# Bob
-[[ -f "$HOME/.local/share/bob/env/env.sh" ]] && source "$HOME/.local/share/bob/env/env.sh"
+# Bins
+[[ -f "$HOME/.local/bin/env" ]] && source "$HOME/.local/bin/env"
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # macOS
