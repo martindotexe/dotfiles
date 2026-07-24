@@ -11,7 +11,9 @@ vim.pack.add({
     { src = "https://github.com/folke/tokyonight.nvim" },
 
     -- File management
+    { src = "https://github.com/ibhagwan/fzf-lua" },
     { src = "https://github.com/stevearc/oil.nvim" },
+    { src = "https://github.com/ingur/fzf-oil.nvim" },
 
     -- Mini ecosystem
     { src = "https://github.com/nvim-mini/mini.statusline" },
@@ -112,63 +114,6 @@ vim.diagnostic.config({
 })
 
 -- ============================================================================
--- Keymaps
--- ============================================================================
-
--- Helper function to set keymaps with default options (noremap, silent).
--- Accepts an optional opts table to extend or override defaults.
-local function map(mode, lhs, rhs, opts)
-    local options = { noremap = true, silent = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.keymap.set(mode, lhs, rhs, opts)
-end
-
--- General editor
-map("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
-map("n", "<space>", "<Nop>")             -- Disable space in normal mode
-map("n", "<C-d>", "<C-d>zz")             -- Half page down, center cursor
-map("n", "<C-u>", "<C-u>zz")             -- Half page up, center cursor
-map("v", "J", ":m '>+1<CR>gv=gv")        -- Move selection down
-map("v", "K", ":m '<-2<CR>gv=gv")        -- Move selection up
-
--- Diagnostics
-map("n", "<leader>dt", function()
-    local config = vim.diagnostic.config()
-    vim.diagnostic.config({ virtual_text = not config.virtual_text })
-end, { desc = "[D]iagnostic [T]oggle virtual text" })
-
--- Window management
-map("n", "<leader>v", "<cmd>vsplit<CR>", { desc = "[V]ertical split" })
-map("n", "<leader>h", "<cmd>split<CR>", { desc = "[H]orizontal split" })
-
--- File browser
-map("n", "\\", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-
--- Fuzzy finder
-map("n", "<leader>ff", "<cmd>Pick files<CR>", { desc = "[F]ind [F]iles" })
-map("n", "<leader>fg", "<cmd>Pick grep_live<CR>", { desc = "[F]ind by [G]rep" })
-map("n", "<leader>fb", "<cmd>Pick buffers<CR>", { desc = "[F]ind [B]uffers" })
-
--- Git operations
-map("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", { desc = "[G]it [P]review hunk" })
-map("n", "<leader>gb", "<cmd>Gitsigns blame_line<CR>", { desc = "[G]it [B]lame line" })
-
--- Plugin management
-map("n", "<leader>ps", "<cmd>lua vim.pack.update()<CR>", { desc = "[P]lugin [S]ync" })
-
--- Tmux navigation
-local nvim_tmux_nav = require("nvim-tmux-navigation")
-
-vim.keymap.set("n", "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)
-vim.keymap.set("n", "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
-vim.keymap.set("n", "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
-vim.keymap.set("n", "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
-vim.keymap.set("n", "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
-vim.keymap.set("n", "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
-
--- ============================================================================
 -- Autocommands
 -- ============================================================================
 
@@ -217,7 +162,11 @@ require("oil").setup({
     view_options = {
         show_hidden = true,
     },
+    float = require("fzf-oil").float,
+    preview_win = require("fzf-oil").preview_win,
 })
+
+local browser = require("fzf-oil").setup()
 
 -- Blink
 require("blink.cmp").setup({
@@ -322,3 +271,60 @@ for server, settings in pairs(servers) do
     vim.lsp.config(server, settings)
     vim.lsp.enable(server)
 end
+
+-- ============================================================================
+-- Keymaps
+-- ============================================================================
+
+-- Helper function to set keymaps with default options (noremap, silent).
+-- Accepts an optional opts table to extend or override defaults.
+local function map(mode, lhs, rhs, opts)
+    local options = { noremap = true, silent = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.keymap.set(mode, lhs, rhs, opts)
+end
+
+-- General editor
+map("n", "<Esc>", "<cmd>nohlsearch<CR>") -- Clear search highlights
+map("n", "<space>", "<Nop>")             -- Disable space in normal mode
+map("n", "<C-d>", "<C-d>zz")             -- Half page down, center cursor
+map("n", "<C-u>", "<C-u>zz")             -- Half page up, center cursor
+map("v", "J", ":m '>+1<CR>gv=gv")        -- Move selection down
+map("v", "K", ":m '<-2<CR>gv=gv")        -- Move selection up
+
+-- Diagnostics
+map("n", "<leader>dt", function()
+    local config = vim.diagnostic.config()
+    vim.diagnostic.config({ virtual_text = not config.virtual_text })
+end, { desc = "[D]iagnostic [T]oggle virtual text" })
+
+-- Window management
+map("n", "<leader>v", "<cmd>vsplit<CR>", { desc = "[V]ertical split" })
+map("n", "<leader>h", "<cmd>split<CR>", { desc = "[H]orizontal split" })
+
+-- Fuzzy finder
+map("n", "<leader>ff", "<cmd>Pick files<CR>", { desc = "[F]ind [F]iles" })
+map("n", "<leader>fg", "<cmd>Pick grep_live<CR>", { desc = "[F]ind by [G]rep" })
+map("n", "<leader>fb", "<cmd>Pick buffers<CR>", { desc = "[F]ind [B]uffers" })
+
+-- Git operations
+map("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", { desc = "[G]it [P]review hunk" })
+map("n", "<leader>gb", "<cmd>Gitsigns blame_line<CR>", { desc = "[G]it [B]lame line" })
+
+-- Plugin management
+map("n", "<leader>ps", "<cmd>lua vim.pack.update()<CR>", { desc = "[P]lugin [S]ync" })
+
+-- Tmux navigation
+local nvim_tmux_nav = require("nvim-tmux-navigation")
+
+map("n", "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)
+map("n", "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
+map("n", "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
+map("n", "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
+map("n", "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
+map("n", "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
+
+-- Filebrowser
+map("n", "\\", browser.browse, { desc = "File browser" })
