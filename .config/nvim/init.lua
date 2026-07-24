@@ -1,5 +1,4 @@
--- Neovim configuration for nvim nightly 0.12+
--- Using built-in package manager (vim.pack.add)
+-- Neovim configuration for nvim 0.12
 
 -- ============================================================================
 -- Plugins
@@ -18,7 +17,6 @@ vim.pack.add({
     -- Mini ecosystem
     { src = "https://github.com/nvim-mini/mini.statusline" },
     { src = "https://github.com/nvim-mini/mini.pairs" },
-    { src = "https://github.com/nvim-mini/mini.pick" },
 
     -- Git integration
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
@@ -50,6 +48,10 @@ local opt = vim.opt
 -- Leader keys
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
+
+-- Newrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- UI appearance
 vim.g.have_nerd_font = true      -- Nerdfonts enabled
@@ -157,6 +159,9 @@ vim.cmd([[colorscheme tokyonight-night]])
 -- Plugin Configuration
 -- ============================================================================
 
+-- fzf
+require("fzf-lua").setup({})
+
 -- Oil
 require("oil").setup({
     view_options = {
@@ -186,9 +191,6 @@ end
 
 -- Mini pairs
 require("mini.pairs").setup()
-
--- Mini pick
-require("mini.pick").setup()
 
 -- Gitsigns
 require("gitsigns").setup({
@@ -283,7 +285,7 @@ local function map(mode, lhs, rhs, opts)
     if opts then
         options = vim.tbl_extend("force", options, opts)
     end
-    vim.keymap.set(mode, lhs, rhs, opts)
+    vim.keymap.set(mode, lhs, rhs, options)
 end
 
 -- General editor
@@ -305,9 +307,9 @@ map("n", "<leader>v", "<cmd>vsplit<CR>", { desc = "[V]ertical split" })
 map("n", "<leader>h", "<cmd>split<CR>", { desc = "[H]orizontal split" })
 
 -- Fuzzy finder
-map("n", "<leader>ff", "<cmd>Pick files<CR>", { desc = "[F]ind [F]iles" })
-map("n", "<leader>fg", "<cmd>Pick grep_live<CR>", { desc = "[F]ind by [G]rep" })
-map("n", "<leader>fb", "<cmd>Pick buffers<CR>", { desc = "[F]ind [B]uffers" })
+map("n", "<leader>ff", "<cmd>FzfLua files resume=true<CR>", { desc = "[F]ind [F]iles" })
+map("n", "<leader>fg", "<cmd>FzfLua live_grep<CR>", { desc = "[F]ind by [G]rep" })
+map("n", "<leader>fb", "<cmd>FzfLua buffers<CR>", { desc = "[F]ind [B]uffers" })
 
 -- Git operations
 map("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", { desc = "[G]it [P]review hunk" })
