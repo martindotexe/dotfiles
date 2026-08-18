@@ -37,6 +37,12 @@ vim.pack.add({
     },
     -- Tmux navigation
     { src = "https://github.com/alexghergh/nvim-tmux-navigation" },
+
+    -- Typst
+    {
+        src = "https://github.com/chomosuke/typst-preview.nvim",
+        version = vim.version.range("v1.*"),
+    },
 })
 
 -- ============================================================================
@@ -159,6 +165,9 @@ vim.cmd([[colorscheme tokyonight-night]])
 -- Plugin Configuration
 -- ============================================================================
 
+-- tinymist
+require("typst-preview").setup({})
+
 -- fzf
 require("fzf-lua").setup({})
 
@@ -214,7 +223,7 @@ require("gitsigns").setup({
 })
 
 -- Treesitter
-local parsers = { "bash", "lua", "luadoc", "markdown", "gleam", "json" }
+local parsers = { "bash", "lua", "luadoc", "markdown", "gleam", "json", "typst" }
 require("nvim-treesitter").setup({
     ensure_installed = parsers,
 })
@@ -248,6 +257,7 @@ local servers = {
             },
         },
     },
+    tinymist = {},
 }
 
 -- Extract server names for Mason to install.
