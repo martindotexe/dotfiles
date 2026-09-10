@@ -169,7 +169,7 @@ vim.cmd([[colorscheme tokyonight-night]])
 require("typst-preview").setup({})
 
 -- fzf
-require("fzf-lua").setup({})
+require("fzf-lua").setup({ "fzf-native" })
 
 -- Oil
 require("oil").setup({
@@ -178,6 +178,11 @@ require("oil").setup({
   },
   float = require("fzf-oil").float,
   preview_win = require("fzf-oil").preview_win,
+  keymaps = {
+    ["<CR>"] = "actions.select",
+    ["C-h"] = { "actions.parent", mode = "n" },
+  },
+  use_default_keymaps = false,
 })
 
 local browser = require("fzf-oil").setup()
