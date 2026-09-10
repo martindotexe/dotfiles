@@ -38,6 +38,9 @@ vim.pack.add({
   -- Tmux navigation
   { src = "https://github.com/alexghergh/nvim-tmux-navigation" },
 
+  -- Undotree
+  { src = "https://github.com/jiaoshijie/undotree" },
+
   -- Typst
   {
     src = "https://github.com/chomosuke/typst-preview.nvim",
@@ -164,6 +167,9 @@ vim.cmd([[colorscheme tokyonight-night]])
 -- ============================================================================
 -- Plugin Configuration
 -- ============================================================================
+
+-- undotree
+require("undotree").setup({})
 
 -- tinymist
 require("typst-preview").setup({})
@@ -345,3 +351,6 @@ map("n", "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
 
 -- Filebrowser
 map("n", "\\", browser.browse, { desc = "File browser" })
+
+-- Undotree
+map("n", "<leader>u", require("undotree").toggle)
