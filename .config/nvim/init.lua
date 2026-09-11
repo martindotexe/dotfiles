@@ -354,3 +354,7 @@ map("n", "\\", browser.browse, { desc = "File browser" })
 
 -- Undotree
 map("n", "<leader>u", require("undotree").toggle)
+-- Code Action
+map("n", "<space>ca", function()
+  vim.lsp.buf.code_action({ apply = true })
+end, { desc = "[C]ode [A]ction" })
